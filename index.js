@@ -6,12 +6,13 @@ import datamedicaRoutes from './routes/datamedica.js';
 import academicRoutes from './routes/academic.js';
 import familyRoutes from './routes/family.js';
 import emergencyRoutes from './routes/emergency.js';
-import uploadRoutes from './routes/upload.js'
+import uploadRoutes from './routes/upload.js';
 
-console.log('datamedicaRoutes:', datamedicaRoutes);
 dotenv.config();
 
-const app = express();app.use(cors({ origin: 'http://localhost:4200',  }));
+const app = express();
+
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 app.use('/api/cateweb', catewebRoutes);
@@ -21,8 +22,8 @@ app.use('/api/family', familyRoutes);
 app.use('/api/emergency', emergencyRoutes);
 app.use('/api/upload', uploadRoutes);
 
+const PORT = process.env.PORT || 3000;
 
-
-app.listen(3000, ()=>{
-    console.log('Servidor corriendo en http://localhost:3000');
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
